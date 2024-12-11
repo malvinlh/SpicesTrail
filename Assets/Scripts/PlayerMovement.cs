@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rigididbody;
     private Animator animator;
 
+    private PlayerAimWeapon aimWeapon;
+    private ChangeWeapon changeWeapon;
+
     public bool isInputEnabled = true; // Control flag for input
 
     private const string horizontal = "Horizontal";
@@ -22,9 +25,11 @@ public class PlayerMovement : MonoBehaviour
     {
         rigididbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        aimWeapon = GetComponent<PlayerAimWeapon>();
+        changeWeapon = GetComponent<ChangeWeapon>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // // Check if the game is paused
         // if (PauseMenu.IsPaused)
@@ -67,6 +72,19 @@ public class PlayerMovement : MonoBehaviour
         {
             // Stop movement if input is disabled
             rigididbody.velocity = Vector2.zero;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            changeWeapon.SwitchWeapon("Machete");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            changeWeapon.SwitchWeapon("FlintlockPistol");
         }
     }
 

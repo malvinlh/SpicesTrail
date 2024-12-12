@@ -74,7 +74,7 @@ private void HandleAttack()
         // Check if tutorialPanel is not null before accessing its properties or methods
         if (tutorialPanel == null || !tutorialPanel.activeSelf)
         {
-            if (Input.GetMouseButtonDown(0) && (SceneManager.GetActiveScene().name != "WhalerIsland2" && SceneManager.GetActiveScene().name != "SkullIsland2" && SceneManager.GetActiveScene().name != "SkullIsland3" && SceneManager.GetActiveScene().name != "SkullIsland4"))
+            if (Input.GetMouseButtonDown(0) && (SceneManager.GetActiveScene().name != "Quest1"))// && SceneManager.GetActiveScene().name != "Qu" && SceneManager.GetActiveScene().name != "SkullIsland3" && SceneManager.GetActiveScene().name != "SkullIsland4"))
             {
                 isAttacking = true;
                 lastAttackTime = Time.time;
@@ -90,7 +90,7 @@ private void HandleAttack()
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.F) && (SceneManager.GetActiveScene().name != "Tutorial2" && SceneManager.GetActiveScene().name != "WhalerIsland4" && SceneManager.GetActiveScene().name != "WhalerIsland6" && SceneManager.GetActiveScene().name != "GiantSkeletonDungeon" && SceneManager.GetActiveScene().name != "DemonDungeon" && SceneManager.GetActiveScene().name != "RegentsHaven2" && SceneManager.GetActiveScene().name != "RegentsHaven4"))
+            if (Input.GetKeyDown(KeyCode.F) && (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "ChickenFight") && (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Quest2")) // && SceneManager.GetActiveScene().name != "WhalerIsland4" && SceneManager.GetActiveScene().name != "WhalerIsland6" && SceneManager.GetActiveScene().name != "GiantSkeletonDungeon" && SceneManager.GetActiveScene().name != "DemonDungeon" && SceneManager.GetActiveScene().name != "RegentsHaven2" && SceneManager.GetActiveScene().name != "RegentsHaven4"))
             {
                 interactableBox.DetectColliders();
             }

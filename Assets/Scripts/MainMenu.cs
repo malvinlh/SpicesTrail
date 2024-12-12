@@ -5,21 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {   
-    [SerializeField] private AudioManager audioManager;
+    public AudioSource clickSFX;
+    public AudioSource MainMenuBGM;
 
     public void PlayGame()
     {
-        audioManager.MainMenuBGMStop();
-        audioManager.SeaWaveSFXStop();
-        audioManager.ClickSFXPlay();
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Tutorial1");
+        MainMenuBGM.Stop();        
+        clickSFX.Play();
+        SceneManager.LoadScene("Quest1");
     }
 
     public void QuitGame()
     {
         //Debug.Log("Exit!");
-        audioManager.ClickSFXPlay();
+        clickSFX.Play();
         Application.Quit();
+    }
+
+    public void PlaySFX()
+    {
+        clickSFX.Play();
     }
 }

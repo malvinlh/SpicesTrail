@@ -12,8 +12,10 @@ public class EnemyMelee : MonoBehaviour
     public float attackDelay; // Delay between attacks
     public int meleeDamage;
 
+    //public GameObject macheteSprite;
     private void Awake()
     {
+        //macheteSprite.SetActive(false);
         macheteAnimator = GetComponent<Animator>();
     }
 
@@ -40,77 +42,13 @@ public class EnemyMelee : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapBoxAll(boxCenter.position, boxSize, 0f);
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("PlayerT2")) // Tutorial 2
+            if (collider.CompareTag("Player")) // Chicken fight
             {
                 macheteAnimator.SetTrigger("Attack");
                 Health playerHealth = collider.gameObject.GetComponent<Health>();
                 if (playerHealth != null)
                 {
                     playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-            if (collider.CompareTag("PlayerWI4")) // Whaler Island 4
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health playerHealth = collider.gameObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-            if (collider.CompareTag("PlayerWI6")) // Whaler Island 6
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health playerHealth = collider.gameObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-            if (collider.CompareTag("PlayerGS")) // Giant Skeleton
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health playerHealth = collider.gameObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-           if (collider.CompareTag("PlayerD")) // Demon
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health playerHealth = collider.gameObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-           if (collider.CompareTag("PlayerRH")) // Regent's Haven
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health playerHealth = collider.gameObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.PlayerGetHit(meleeDamage, gameObject);
-                }
-            }
-
-            if (collider.CompareTag("Ally")) // Whaler Island 4
-            {
-                enemyAnimator.SetTrigger("Attack");
-                Health allyHealth = collider.gameObject.GetComponent<Health>();       
-                if (allyHealth != null)
-                {
-                    HPBar allyHPBar = collider.gameObject.GetComponent<HPBar>();
-                    if (allyHPBar != null)
-                    {
-                        allyHealth.GetHit(meleeDamage, gameObject, allyHPBar);
-                    }
                 }
             }
         }

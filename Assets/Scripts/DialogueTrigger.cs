@@ -10,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerAimWeapon aimWeapon;
 
+    public InteractableBox interactableBox;
+
     public void Awake()
     {
         interactPanel.SetActive(false);
@@ -34,6 +36,11 @@ public class DialogueTrigger : MonoBehaviour
     {
         playerInput.ActivateInput();
         aimWeapon.ToggleInputHandling(true);
+
+        if(interactableBox.q1DialogueDone == true)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Quest2");
+        }
     }
 
     public bool IsDialogueActive()

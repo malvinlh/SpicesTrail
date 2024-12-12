@@ -77,14 +77,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        // kasih if yg dia ga bole pake senjata
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Quest1" || UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Quest3")
         {
-            changeWeapon.SwitchWeapon("Machete");
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                changeWeapon.SwitchWeapon("Machete");
+            }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            changeWeapon.SwitchWeapon("FlintlockPistol");
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                changeWeapon.SwitchWeapon("FlintlockPistol");
+            }
         }
     }
 

@@ -32,7 +32,7 @@ public class PlayerBullet : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {        
-        if (collision.gameObject.tag == "EnemyWI6" || collision.gameObject.tag == "EnemyWI4" || collision.gameObject.tag == "EnemyT2" || collision.gameObject.tag == "EnemyGS" || collision.gameObject.tag == "BossGS" || collision.gameObject.tag == "EnemyD" || collision.gameObject.tag == "EnemyRH")
+        if (collision.gameObject.tag == "Enemy") //|| collision.gameObject.tag == "EnemyWI4" || collision.gameObject.tag == "EnemyT2" || collision.gameObject.tag == "EnemyGS" || collision.gameObject.tag == "BossGS" || collision.gameObject.tag == "EnemyD" || collision.gameObject.tag == "EnemyRH")
         {     
             Health enemyHealth = collision.gameObject.GetComponent<Health>();       
             if (enemyHealth != null)

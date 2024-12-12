@@ -55,7 +55,8 @@ public class Health : MonoBehaviour
         {
             isDead = true;
             OnDeathWithReference?.Invoke(sender);
-            if (SceneManager.GetActiveScene().name == "RegentsHaven4")
+            // bikin lanjut scene aja
+            if (SceneManager.GetActiveScene().name == "ChickenFight")
                 winPanel.WonPanel();
             else
                 HandleDeathEnemy(); // Call HandleDeathEnemy method on enemy death
@@ -85,7 +86,7 @@ public class Health : MonoBehaviour
             isDead = true;
             OnDeathWithReference?.Invoke(sender);
 
-            if (SceneManager.GetActiveScene().name == "WhalerIsland4" || SceneManager.GetActiveScene().name == "GiantSkeletonDungeon" || SceneManager.GetActiveScene().name == "DemonDungeon" || SceneManager.GetActiveScene().name == "RegentsHaven2" || SceneManager.GetActiveScene().name == "RegentsHaven4")
+            if (SceneManager.GetActiveScene().name == "ChickenFight") //|| SceneManager.GetActiveScene().name == "GiantSkeletonDungeon" || SceneManager.GetActiveScene().name == "DemonDungeon" || SceneManager.GetActiveScene().name == "RegentsHaven2" || SceneManager.GetActiveScene().name == "RegentsHaven4")
                 gameOver.GameOverPanel();
             else
                 HandleDeathPlayer();
@@ -132,6 +133,11 @@ public class Health : MonoBehaviour
         }
 
         if (SceneManager.GetActiveScene().name == "RegentsHaven2" && gameObject.CompareTag("EnemyRH"))
+        {
+            enemyKilledCounter.EnemyKilled();
+        }
+
+        if (SceneManager.GetActiveScene().name == "Quest2" && gameObject.CompareTag("Enemy"))
         {
             enemyKilledCounter.EnemyKilled();
         }

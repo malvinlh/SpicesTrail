@@ -139,6 +139,7 @@ public class Health : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == "Quest2" && gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("killed");
             enemyKilledCounter.EnemyKilled();
         }
 

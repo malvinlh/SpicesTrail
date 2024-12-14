@@ -18,6 +18,7 @@ public class CookingSlidebar : MonoBehaviour, IPointerDownHandler, IPointerUpHan
     [SerializeField] private float cookingSpeedIntervalMax = 0.6f;
 
     private bool isCooking = false;
+    private bool firstClick = false;
     private float elapsedTime = 0f;
     private bool isMouseDown = false;
     private float middleMin;
@@ -79,7 +80,8 @@ public class CookingSlidebar : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         // Automatically increment the slider
         if (!isMouseDown)
         {
-            slider.value += cookingSpeed * Time.deltaTime;
+            if(firstClick)
+                slider.value += cookingSpeed * Time.deltaTime;
         }
         else
         {
@@ -125,6 +127,7 @@ public class CookingSlidebar : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        firstClick = true;
         isMouseDown = true;
     }
 

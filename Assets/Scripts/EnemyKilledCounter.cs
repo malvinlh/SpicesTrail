@@ -15,20 +15,17 @@ public class EnemyKilledCounter : MonoBehaviour
     public void EnemyKilled()
     {
         enemiesKilled++;
-        Debug.Log(enemiesKilled);
         UpdateText();
 
-        if (SceneManager.GetActiveScene().name == "Quest2" && enemiesKilled >= 5)
+        if (SceneManager.GetActiveScene().name == "Q1_5Bahan" && enemiesKilled >= 5)
         {
-            SceneManager.LoadScene("Quest3");
+            SceneManager.LoadScene("Q1_D3");
         }
     }
 
     private void UpdateText()
     {
-        if (SceneManager.GetActiveScene().name == "Quest2")
-            text.text = enemiesKilled.ToString() + "/5";
-        
-        Debug.Log("UpdateText");
+        if (SceneManager.GetActiveScene().name == "Q1_5Bahan")
+            text.text = enemiesKilled.ToString() + "/5";        
     }
 }

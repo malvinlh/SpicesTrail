@@ -37,10 +37,25 @@ public class DialogueTrigger : MonoBehaviour
         playerInput.ActivateInput();
         aimWeapon.ToggleInputHandling(true);
 
-        if(interactableBox.q1DialogueDone == true)
+        if(interactableBox.q1d1d2DialogueDone == true)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Quest2");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Q1_5Bahan");
         }
+
+        if(interactableBox.q1d3DialogueDone == true)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D1");
+        }
+
+        if(interactableBox.q2d1DialogueDone == true)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_ChickenFight");
+        }
+
+        // if(interactableBox.q2d2d3DialogueDone == true)
+        // {
+        //     UnityEngine.SceneManagement.SceneManager.LoadScene("");
+        // }
     }
 
     public bool IsDialogueActive()

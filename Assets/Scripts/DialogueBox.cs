@@ -34,10 +34,5 @@ public class DialogueBox : MonoBehaviour
             dialogueText.text = nextLine.dialogue;
             currentIndex++;
         }
-
-        if (interactableBox.chest == true && nextLine == null)
-        {
-            changeScene.ChangeSceneManually();
-        }
     }
 }

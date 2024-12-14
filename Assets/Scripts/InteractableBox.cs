@@ -5,51 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class InteractableBox : MonoBehaviour
 {
-    public GameObject dialoguePanel;
-
     public Transform boxCenter;
     public Vector2 boxSize;
+    private bool isDialogueActive1 = false;
+
+    // ----------------------------------------------------
+
     public DialogueTrigger dialogueTriggerMilo;
     public DialogueTrigger dialogueTriggerKyu;
     public DialogueTrigger dialogueTriggerLisa;
 
-    public DialogueTrigger dialogueTriggerSign;
-    public DialogueTrigger dialogueTriggerLake1;
-    public DialogueTrigger dialogueTriggerLake2;
-    public DialogueTrigger dialogueTriggerStatue1;
-    public DialogueTrigger dialogueTriggerStatue2;
-    public DialogueTrigger dialogueTriggerSkeleton;
-    public DialogueTrigger dialogueTriggerChest;
-    public DialogueTrigger dialogueTriggerCrow1;
-    public DialogueTrigger dialogueTriggerCrow2;
-    public DialogueTrigger dialogueTriggerGhost;
-
-    public bool skeleton = false;
-    public bool chest = false;
-    public bool statue = false;
-    public bool crow = false;
-    public bool lake = false;
-
-    public GameObject lake1;
-    public GameObject statue1;
-    public GameObject crow1;
-
-    [SerializeField]
-    private GameObject chestObject;
-
-    public GameObject fishingRod;
-
-    private bool isDialogueActive1 = false;
-    private bool isDialogueActive2 = false;
+    // ----------------------------------------------------
 
     // Quest 1
     public GameObject miloDialogueMarkQ1;
     public GameObject kyuDialogueMarkQ1;
 
+    // Quest 2
+    public GameObject lisaDialogueMarkQ2;
+    public GameObject miloDialogueMarkQ2;
+
+    // ----------------------------------------------------
+
     // Quest 1
     public bool miloq1 = false;
-    public bool kyuq1 = false;
-    public bool q1DialogueDone = false;
+    public bool q1d1d2DialogueDone = false;
+    public bool q1d3DialogueDone = false;
+
+    // Quest 2
+    public bool lisaq2 = false;
+    public bool q2d1DialogueDone = false;
+    public bool q2d2d3DialogueDone = false;
+
+    // ----------------------------------------------------
 
     private void OnDrawGizmosSelected()
     {
@@ -58,10 +46,32 @@ public class InteractableBox : MonoBehaviour
         Gizmos.DrawWireCube(position, new Vector3(boxSize.x, boxSize.y, 0f));
     }
 
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Q1_D1_D2")
+        {
+            miloDialogueMarkQ1.SetActive(true);
+            kyuDialogueMarkQ1.SetActive(false);
+        }
+
+        if (SceneManager.GetActiveScene().name == "Q1_D3")
+        {
+            miloDialogueMarkQ1.SetActive(false);
+            kyuDialogueMarkQ1.SetActive(true);
+        }
+
+        if (SceneManager.GetActiveScene().name == "Q2_D1")
+        {
+            lisaDialogueMarkQ2.SetActive(true);
+            miloDialogueMarkQ2.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         // Check for mouse hover
         DetectHoveredCollider();
+        //DetectColliders();
     }
 
     public void DetectColliders()
@@ -69,121 +79,77 @@ public class InteractableBox : MonoBehaviour
         Vector2 boxCenterPosition = boxCenter == null ? transform.position : boxCenter.position;
         foreach (Collider2D collider in Physics2D.OverlapBoxAll(boxCenterPosition, boxSize, 0f))
         {
-            dialoguePanel.SetActive(true);
+            // Q1_D1_D2
 
-            // Quest 1
-
-            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Milo" && Input.GetKeyDown(KeyCode.F))
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Milo" && Input.GetKeyDown(KeyCode.F) && SceneManager.GetActiveScene().name == "Q1_D1_D2")
             {
                 miloq1 = true;
-                kyuq1 = true;
                 kyuDialogueMarkQ1.SetActive(true);
-                
+
                 if (miloDialogueMarkQ1.activeSelf)
                 {
                     dialogueTriggerMilo.TriggerDialogue();
                 }
             }
 
-            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Kyu" && Input.GetKeyDown(KeyCode.F) && miloq1)
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Kyu" && Input.GetKeyDown(KeyCode.F) && miloq1 && SceneManager.GetActiveScene().name == "Q1_D1_D2")
             {                
                 if (kyuDialogueMarkQ1.activeSelf)
                 {
                     dialogueTriggerKyu.TriggerDialogue();
                 }
 
-                q1DialogueDone = true;
+                q1d1d2DialogueDone = true;
             }
 
-            // Quest 3
+            // Q1_D3    
 
-            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Lisa" && Input.GetKeyDown(KeyCode.F))
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Kyu" && Input.GetKeyDown(KeyCode.F) && SceneManager.GetActiveScene().name == "Q1_D3")
+            {                
+                if (kyuDialogueMarkQ1.activeSelf)
+                {
+                    dialogueTriggerKyu.TriggerDialogue();
+                }
+
+                q1d3DialogueDone = true;
+            }
+
+            // Q2_D1
+
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Lisa" && Input.GetKeyDown(KeyCode.F) && SceneManager.GetActiveScene().name == "Q2_D1")
             {
-                GameObject lisaDialogueMark = GameObject.Find("LisaDialogueMark");
-                
-                if (lisaDialogueMark.activeSelf)
+                if (lisaDialogueMarkQ2.activeSelf)
                 {
                     dialogueTriggerLisa.TriggerDialogue();
                 }
+
+                q2d1DialogueDone = true;
             }
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Sign" && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     GameObject signDialogueMark = GameObject.Find("SignDialogueMark");
-                
-            //     if (signDialogueMark.activeSelf)
-            //     {
-            //         dialogueTriggerSign.TriggerDialogue();
-            //     }
-            // }
+            // Q2_D2_D3
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Skeleton" && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     skeleton = true; // udah bicara ke skeleton
-            //     dialogueTriggerSkeleton.TriggerDialogue(); // bicara ke skeleton, ga urusin index
-            //     fishingRod.SetActive(false);
-            // }
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Lisa" && Input.GetKeyDown(KeyCode.F) && SceneManager.GetActiveScene().name == "Q2_D2_D3")
+            {
+                lisaq2 = true;
+                miloDialogueMarkQ2.SetActive(true);
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Lake1" && !skeleton && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     lake = false; // maka false karena dia belum dapet ikan.
-            //     dialogueTriggerLake1.TriggerDialogue(); // nampilin indeks 0 aja.
-            // }
+                if (lisaDialogueMarkQ2.activeSelf)
+                {
+                    dialogueTriggerLisa.TriggerDialogue();
+                }
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Lake2" && skeleton && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     lake1.SetActive(false);
-            //     lake = true; // maka false karena dia belum dapet ikan.
-            //     dialogueTriggerLake2.TriggerDialogue(); // nampilin indeks 0 aja.
-            // }            
+            }
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "CrowOnTopOfStone1" && !lake && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     crow = false; // false karena belum dapet mata
-            //     dialogueTriggerCrow1.TriggerDialogue(); // nampilin indeks 0 aja
-            // }
+            if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Milo" && Input.GetKeyDown(KeyCode.F) && lisaq2 && SceneManager.GetActiveScene().name == "Q2_D2_D3")
+            {
+                if (miloDialogueMarkQ2.activeSelf)
+                {
+                    dialogueTriggerMilo.TriggerDialogue();
+                }
 
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "CrowOnTopOfStone2" && lake && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     crow1.SetActive(false);
-            //     crow = true; // false karena belum dapet mata
-            //     dialogueTriggerCrow2.TriggerDialogue(); // nampilin indeks 0 aja
-            // }
-
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Statue1" && !crow && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     statue = false; // false karena belum tekan tombol
-            //     dialogueTriggerStatue1.TriggerDialogue();
-            // }
-
-            // if (collider.gameObject.tag == "InteractableObject" && collider.name == "Statue2" && crow && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     statue1.SetActive(false);
-            //     statue = true; // false karena belum tekan tombol
-            //     dialogueTriggerStatue2.TriggerDialogue();
-                
-            //     if (chestObject != null)
-            //         chestObject.SetActive(true);
-            // }
-
-            // if (chestObject.gameObject.activeSelf && collider.gameObject.tag == "InteractableObject" && collider.name == "Chest" && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     chest = true;
-            //     dialogueTriggerChest.TriggerDialogue();
-            // }
-
-            // if (collider.gameObject.tag == "InteractableNPC" && collider.name == "Ghost" && Input.GetKeyDown(KeyCode.F))
-            // {
-            //     GameObject ghostDialogueMark = GameObject.Find("GhostDialogueMark");
-                
-            //     if (ghostDialogueMark.activeSelf)
-            //     {
-            //         dialogueTriggerGhost.TriggerDialogue();
-            //     }
-            // }
+                q2d2d3DialogueDone = true;
+            }
         }
-
-        dialoguePanel.SetActive(false);
     }
 
     private void DetectHoveredCollider()
@@ -223,31 +189,15 @@ public class InteractableBox : MonoBehaviour
 
         // Check if any dialogue trigger is active
         
-        if (SceneManager.GetActiveScene().name == "WhalerIsland2")
+        if (SceneManager.GetActiveScene().name == "Q1_D1_D2" || SceneManager.GetActiveScene().name == "Q1_D3" || SceneManager.GetActiveScene().name == "Q2_D1")
         {
             isDialogueActive1 = dialogueTriggerMilo.IsDialogueActive() ||
-                                    dialogueTriggerSign.IsDialogueActive() ||
-                                    dialogueTriggerLake1.IsDialogueActive() ||
-                                    dialogueTriggerLake2.IsDialogueActive() ||
-                                    dialogueTriggerStatue1.IsDialogueActive() ||
-                                    dialogueTriggerStatue2.IsDialogueActive() ||
-                                    dialogueTriggerSkeleton.IsDialogueActive() ||
-                                    dialogueTriggerChest.IsDialogueActive() ||
-                                    dialogueTriggerCrow1.IsDialogueActive() ||
-                                    dialogueTriggerCrow2.IsDialogueActive();
+                                    dialogueTriggerKyu.IsDialogueActive() ||
+                                    dialogueTriggerLisa.IsDialogueActive();
             
             if (!isDialogueActive1) 
             {
                 dialogueTriggerMilo.interactPanel.SetActive(isHovering);
-            }
-        }
-
-        if (SceneManager.GetActiveScene().name == "SkullIsland2" || SceneManager.GetActiveScene().name == "SkullIsland3" || SceneManager.GetActiveScene().name == "SkullIsland4")
-        {
-            isDialogueActive2 = dialogueTriggerGhost.IsDialogueActive();
-            if (!isDialogueActive2)
-            {
-                dialogueTriggerGhost.interactPanel.SetActive(isHovering);
             }
         }
     }

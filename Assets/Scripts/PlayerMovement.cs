@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         // kasih if yg dia ga bole pake senjata
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Quest1" || UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Quest3")
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Q1_D1_D2" || UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "Q1_D3")
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {

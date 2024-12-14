@@ -137,9 +137,8 @@ public class Health : MonoBehaviour
             enemyKilledCounter.EnemyKilled();
         }
 
-        if (SceneManager.GetActiveScene().name == "Quest2" && gameObject.CompareTag("Enemy"))
+        if (SceneManager.GetActiveScene().name == "Q1_5Bahan" && gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("killed");
             enemyKilledCounter.EnemyKilled();
         }
 

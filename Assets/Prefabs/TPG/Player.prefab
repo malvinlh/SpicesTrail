@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 397834806242995732}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.093, y: -0.004, z: 0}
+  m_LocalPosition: {x: 0.13, y: -0.009, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -146,27 +146,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCenter: {fileID: 415883915159600568}
   boxSize: {x: 0.3, y: 0.3}
-  dialogueTriggerBeardie: {fileID: 0}
-  dialogueTriggerSign: {fileID: 0}
-  dialogueTriggerLake1: {fileID: 0}
-  dialogueTriggerLake2: {fileID: 0}
-  dialogueTriggerStatue1: {fileID: 0}
-  dialogueTriggerStatue2: {fileID: 0}
-  dialogueTriggerSkeleton: {fileID: 0}
-  dialogueTriggerChest: {fileID: 0}
-  dialogueTriggerCrow1: {fileID: 0}
-  dialogueTriggerCrow2: {fileID: 0}
-  dialogueTriggerGhost: {fileID: 0}
-  skeleton: 0
-  chest: 0
-  statue: 0
-  crow: 0
-  lake: 0
-  lake1: {fileID: 0}
-  statue1: {fileID: 0}
-  crow1: {fileID: 0}
-  chestObject: {fileID: 0}
-  fishingRod: {fileID: 0}
+  dialogueTriggerMilo: {fileID: 0}
+  dialogueTriggerKyu: {fileID: 0}
+  dialogueTriggerLisa: {fileID: 0}
+  miloDialogueMarkQ1: {fileID: 0}
+  kyuDialogueMarkQ1: {fileID: 0}
+  lisaDialogueMarkQ2: {fileID: 0}
+  miloDialogueMarkQ2: {fileID: 0}
+  miloq1: 0
+  q1d1d2DialogueDone: 0
+  q1d3DialogueDone: 0
+  lisaq2: 0
+  q2d1DialogueDone: 0
+  q2d2d3DialogueDone: 0
 --- !u!1 &3396880905371969553
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5781407113533318176
 Transform:
   m_ObjectHideFlags: 0
@@ -810,6 +802,7 @@ MonoBehaviour:
       m_Calls: []
   isDead: 0
   text: {fileID: 0}
+  pitikAcquired: {fileID: 0}
   gameOver: {fileID: 0}
   winPanel: {fileID: 0}
   teleporterSkeletonOff: {fileID: 0}

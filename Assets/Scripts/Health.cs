@@ -14,6 +14,8 @@ public class Health : MonoBehaviour
     public bool isDead = false;
     public TextMeshProUGUI text;
 
+    public GameObject pitikAcquired;
+
     private HPBar playerHPBar;
     private HPBar enemyHPBar;
 
@@ -57,7 +59,9 @@ public class Health : MonoBehaviour
             OnDeathWithReference?.Invoke(sender);
             // bikin lanjut scene aja
             if (SceneManager.GetActiveScene().name == "Q2_ChickenFight")
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D2_D3");
+            {
+                pitikAcquired.SetActive(true);
+            }
             else
                 HandleDeathEnemy(); // Call HandleDeathEnemy method on enemy death
         }
@@ -128,5 +132,10 @@ public class Health : MonoBehaviour
         }
 
         Destroy(gameObject);   
+    }
+
+    public void LoadNextSceneee()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D2_D3");
     }
 }

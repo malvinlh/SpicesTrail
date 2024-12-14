@@ -10,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerAimWeapon aimWeapon;
 
+    public GameObject q1itemsAcquired;
+
     public InteractableBox interactableBox;
 
     public void Awake()
@@ -44,7 +46,7 @@ public class DialogueTrigger : MonoBehaviour
 
         if(interactableBox.q1d3DialogueDone == true)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D1");
+            q1itemsAcquired.SetActive(true);
         }
 
         if(interactableBox.q2d1DialogueDone == true)
@@ -62,5 +64,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         bool active = dialogueBox.activeSelf;
         return active;
+    }
+
+    public void LoadNextQ2Scene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D1");
     }
 }

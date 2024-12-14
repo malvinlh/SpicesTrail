@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TPG/Q2_D2_D3.unity
     guid: 028afe262c493cf48b4ac5ac29bdc857
+  - enabled: 1
+    path: Assets/Scenes/TPG/Cooking.unity
+    guid: 748ee43d95f488f47807d05eec745e55
   m_configObjects: {}

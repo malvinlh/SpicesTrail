@@ -52,10 +52,10 @@ public class DialogueTrigger : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_ChickenFight");
         }
 
-        // if(interactableBox.q2d2d3DialogueDone == true)
-        // {
-        //     UnityEngine.SceneManagement.SceneManager.LoadScene("");
-        // }
+        if(interactableBox.q2d2d3DialogueDone == true)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Cooking");
+        }
     }
 
     public bool IsDialogueActive()

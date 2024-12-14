@@ -49,6 +49,7 @@ public class GameOver : MonoBehaviour
 
     public void HomeButton()
     {
+        SceneManager.LoadScene("MainMenu");
         audioManager.ClickSFXPlay();
         ConfirmationPanel();
     }
@@ -60,16 +61,16 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(currentSceneName);
     }
 
-    public void AcceptButton()
-    {
-        audioManager.ClickSFXPlay();
-        SceneManager.LoadScene("MainMenu");
-    }
+    // public void AcceptButton()
+    // {
+    //     audioManager.ClickSFXPlay();
+    //     SceneManager.LoadScene("MainMenu");
+    // }
 
-    public void DeclineButton()
-    {
-        audioManager.ClickSFXPlay();
-        gameOverPanel.SetActive(true);
-        confirmationPanel.SetActive(false);
-    }
+    // public void DeclineButton()
+    // {
+    //     audioManager.ClickSFXPlay();
+    //     gameOverPanel.SetActive(true);
+    //     confirmationPanel.SetActive(false);
+    // }
 }

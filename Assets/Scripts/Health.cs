@@ -56,8 +56,8 @@ public class Health : MonoBehaviour
             isDead = true;
             OnDeathWithReference?.Invoke(sender);
             // bikin lanjut scene aja
-            if (SceneManager.GetActiveScene().name == "ChickenFight")
-                winPanel.WonPanel();
+            if (SceneManager.GetActiveScene().name == "Q2_ChickenFight")
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Q2_D2_D3");
             else
                 HandleDeathEnemy(); // Call HandleDeathEnemy method on enemy death
         }
@@ -86,60 +86,45 @@ public class Health : MonoBehaviour
             isDead = true;
             OnDeathWithReference?.Invoke(sender);
 
-            if (SceneManager.GetActiveScene().name == "ChickenFight") //|| SceneManager.GetActiveScene().name == "GiantSkeletonDungeon" || SceneManager.GetActiveScene().name == "DemonDungeon" || SceneManager.GetActiveScene().name == "RegentsHaven2" || SceneManager.GetActiveScene().name == "RegentsHaven4")
+            if (SceneManager.GetActiveScene().name == "Q2_ChickenFight")
                 gameOver.GameOverPanel();
-            else
-                HandleDeathPlayer();
         }
 
         if (playerHPBar.health.transform.localScale.x > 0f)
             playerHPBar.SetHP(playerHPBar.health.transform.localScale.x - floatAmount);
     }
 
-    private void HandleDeathPlayer()
-    {
-        if (SceneManager.GetActiveScene().name == "Tutorial2")
-        {
-            SceneManager.LoadScene("Tutorial3");
-        }
-        if (SceneManager.GetActiveScene().name == "WhalerIsland6")
-        {
-            SceneManager.LoadScene("WhalerIsland7");
-        }
+    // private void HandleDeathPlayer()
+    // {
+    //     if (SceneManager.GetActiveScene().name == "Q2_ChickenFight")
+    //     {
+    //         SceneManager.LoadScene("GameOver");
+    //     }
+    //     {
+    //         SceneManager.LoadScene("Tutorial3");
+    //     }
+    //     if (SceneManager.GetActiveScene().name == "WhalerIsland6")
+    //     {
+    //         SceneManager.LoadScene("WhalerIsland7");
+    //     }
 
-        Destroy(gameObject);    
-    }
+    //     Destroy(gameObject);    
+    // }
 
     private void HandleDeathEnemy()
     {
-        if (SceneManager.GetActiveScene().name == "Tutorial2")
+        if (SceneManager.GetActiveScene().name == "Q1_5Bahan")
         {
-            SceneManager.LoadScene("Tutorial3");
-        }
-        if (SceneManager.GetActiveScene().name == "WhalerIsland6")
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
-        if (SceneManager.GetActiveScene().name == "GiantSkeletonDungeon" && gameObject.CompareTag("BossGS"))
-        {
-            teleporterSkeletonOn.SetActive(true);
-            teleporterSkeletonOff.SetActive(false);
-            text.text = "Return to your spawn point.";
-        }
-
-        if (SceneManager.GetActiveScene().name == "DemonDungeon" && gameObject.CompareTag("EnemyD"))
-        {
-            enemyKilledCounter.EnemyKilled();
-        }
-
-        if (SceneManager.GetActiveScene().name == "RegentsHaven2" && gameObject.CompareTag("EnemyRH"))
-        {
-            enemyKilledCounter.EnemyKilled();
-        }
-
-        if (SceneManager.GetActiveScene().name == "Q1_5Bahan" && gameObject.CompareTag("Enemy"))
-        {
-            enemyKilledCounter.EnemyKilled();
+            string[] enemyNames = { "Sawi", "KembangTuri", "KacangPanjang", "Tauge", "Timun" };
+            foreach (string enemyName in enemyNames)
+            {
+                GameObject enemy = GameObject.Find(enemyName);
+                if (enemy == gameObject)
+                {
+                    enemyKilledCounter.EnemyKilled();
+                    break;
+                }
+            }
         }
 
         Destroy(gameObject);   

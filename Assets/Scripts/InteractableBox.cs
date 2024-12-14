@@ -71,7 +71,6 @@ public class InteractableBox : MonoBehaviour
     {
         // Check for mouse hover
         DetectHoveredCollider();
-        //DetectColliders();
     }
 
     public void DetectColliders()
@@ -174,22 +173,11 @@ public class InteractableBox : MonoBehaviour
                     break;
                 }
             }
-            
-            if (collider.CompareTag("InteractableObject"))
-            {
-                float distance = Vector2.Distance(collider.bounds.center, boxCenterPosition);
-
-                if (distance <= Mathf.Max(boxSize.x, boxSize.y))
-                {
-                    isHovering = true;
-                    break;
-                }
-            }
         }
 
         // Check if any dialogue trigger is active
         
-        if (SceneManager.GetActiveScene().name == "Q1_D1_D2" || SceneManager.GetActiveScene().name == "Q1_D3" || SceneManager.GetActiveScene().name == "Q2_D1")
+        if (SceneManager.GetActiveScene().name == "Q1_D1_D2" || SceneManager.GetActiveScene().name == "Q1_D3" || SceneManager.GetActiveScene().name == "Q2_D1" || SceneManager.GetActiveScene().name == "Q2_D2_D3")
         {
             isDialogueActive1 = dialogueTriggerMilo.IsDialogueActive() ||
                                     dialogueTriggerKyu.IsDialogueActive() ||

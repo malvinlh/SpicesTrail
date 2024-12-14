@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         MainMenuBGM.Stop();        
         clickSFX.Play();
-        SceneManager.LoadScene("Quest1");
+        SceneManager.LoadScene("Q1_D1_D2");
     }
 
     public void QuitGame()

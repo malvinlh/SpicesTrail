@@ -6,11 +6,13 @@ TagManager:
   tags:
   - Enemy
   - PickableObject
-  - PlayerD
-  - EnemyD
   - BossGS
-  - EnemyRH
-  - PlayerRH
+  - InteractableNPC
+  - Sawi
+  - KembangTuri
+  - Timun
+  - Tauge
+  - KacangPanjang
   layers:
   - Default
   - TransparentFX

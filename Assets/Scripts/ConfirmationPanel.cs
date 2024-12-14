@@ -34,18 +34,10 @@ public class ConfirmationPanel : MonoBehaviour
     }
 
     public void AcceptButton()
-    {
-        if (SceneManager.GetActiveScene().name == "GiantSkeletonDungeon" || SceneManager.GetActiveScene().name == "DemonDungeon")
-            SceneManager.LoadScene("SkullIsland2");
-        
-        if (SceneManager.GetActiveScene().name == "SkullIsland2")
+    {        
+        if (SceneManager.GetActiveScene().name == "Q2_ChickenFight")
         {
-            SceneManager.LoadScene("GiantSkeletonDungeon");
-        }
-
-        if (SceneManager.GetActiveScene().name == "SkullIsland3")
-        {
-            SceneManager.LoadScene("DemonDungeon");
+            SceneManager.LoadScene("Q2_ChickenFight");
         }
     }
 
